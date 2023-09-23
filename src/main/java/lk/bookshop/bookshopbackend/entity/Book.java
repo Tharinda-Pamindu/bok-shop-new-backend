@@ -2,7 +2,6 @@ package lk.bookshop.bookshopbackend.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -43,4 +42,7 @@ public class Book {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = false, referencedColumnName = "id")
     private BookCategory category;
+
+    @ManyToMany(mappedBy = "books")
+    private Set<Order> orders = new HashSet<>();
 }

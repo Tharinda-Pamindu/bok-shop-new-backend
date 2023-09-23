@@ -2,11 +2,14 @@ package lk.bookshop.bookshopbackend.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import lk.bookshop.bookshopbackend.dto.OrderStatusDto;
+import lk.bookshop.bookshopbackend.entity.Book;
 import lk.bookshop.bookshopbackend.entity.Order;
+import lk.bookshop.bookshopbackend.repository.BookRepository;
 import lk.bookshop.bookshopbackend.repository.OrderRepository;
 
 @Service
@@ -14,6 +17,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     public OrderServiceImpl(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
@@ -31,6 +37,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order savOrder(Order order) {
+        // Set<Book> books = order.getBooks();
+        // for (Book book : books) {
+        //     book.setQuantity(book.getQuantity() - 1);
+        //     bookRepository.save(book);
+        // }
         return orderRepository.save(order);
     }
 
