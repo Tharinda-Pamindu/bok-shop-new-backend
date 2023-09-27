@@ -43,6 +43,4 @@ public class Book {
     @JoinColumn(name = "category_id", nullable = false, referencedColumnName = "id")
     private BookCategory category;
 
-    @ManyToMany(mappedBy = "books")
-    private Set<Order> orders = new HashSet<>();
 }

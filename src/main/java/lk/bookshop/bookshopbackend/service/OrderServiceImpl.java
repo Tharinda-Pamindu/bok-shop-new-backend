@@ -37,11 +37,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order savOrder(Order order) {
-        // Set<Book> books = order.getBooks();
-        // for (Book book : books) {
-        //     book.setQuantity(book.getQuantity() - 1);
-        //     bookRepository.save(book);
-        // }
+        Set<Book> books = order.getBooks();
+        for (Book book : books) {
+            Book tempBook = bookRepository.findById(book.getId()).orElse(null);
+            if (tempBook != null) {
+                int qty = tempBook.getQuantity();
+                tempBook.setQuantity(qty - 1);
+                book.setQuantity(tempBook.getQuantity());
+                bookRepository.save(tempBook);
+            }
+
+        }
         return orderRepository.save(order);
     }
 

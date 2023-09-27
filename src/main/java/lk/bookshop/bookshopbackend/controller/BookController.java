@@ -83,7 +83,7 @@ public class BookController {
         }
     }
 
-    @GetMapping(value = "/book/category/{categoryID}")
+    @GetMapping(value = "/auth/{categoryID}")
     public ResponseEntity<?> getBooksByCategoryID(@PathVariable Long categoryID) {
         try {
             return ResponseEntity.ok().body(bookService.getAllBooksByCategoryId(categoryID));
